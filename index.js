@@ -14,7 +14,6 @@ program
   .option('-x, --max <n>', 'maximum time, in milliseconds, that a simulated user will wait between executing each task (default: 3000).', parseInt)
   .option('-H, --host <host>', 'The host attribute is a URL prefix (i.e. “http://google.com”) to the host that is to be loaded.')
   .action(function(file, options) {
-    console.log(options);
     cmdValue = file;
     if (!s2l.validFile(file)) {
       console.error(chalk.red("Error: File not found or not a valid swagger yaml/json file: "+file));
