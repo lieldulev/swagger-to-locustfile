@@ -18,14 +18,15 @@ _Hopefully it will be available to be installed with npm directly soon._
 * Swagger's host field
 * GET endpoints only.
 * Using Path-Parameters' default value.
+* Adding required query string parameters and their default values.
 
 ## Future Plans
-* Query String parameters
+* follow $ref for parameters
 * POST / PUT endpoints
 * Add Command Line Options
 
 ## Usage
-`$ swagger2locust /path/to/swagger.yaml  > /tmp/locustfile.py`
+`$ swagger2locust /path/to/swagger.json  > /tmp/locustfile.py`
 
 ## Contribute 
   * fork
