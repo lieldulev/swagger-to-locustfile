@@ -1,0 +1,27 @@
+{
+  "name": "swagger-to-locustfile",
+  "version": "0.1.0",
+  "description": "A CLI tool that creates locust.io config tasks file from swagger json spec",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lieldulev/swagger-to-locustfile.git"
+  },
+  "author": "Liel Dulev <lieldulev@gmail.com>",
+  "license": "ISC",
+  "bin": {
+    "swagger2locust": "./index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/lieldulev/swagger-to-locustfile/issues"
+  },
+  "homepage": "https://github.com/lieldulev/swagger-to-locustfile#readme",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "commander": "^2.9.0",
+    "js-yaml": "^3.5.2"
+  }
+}
