@@ -15,18 +15,37 @@ Currently best option is
 _Hopefully it will be available to be installed with npm directly soon._
 
 ## Currently Supports
-* Swagger's host field
-* GET endpoints only.
-* Using Path-Parameters' default value.
-* Adding required query string parameters and their default values.
+* Grabbing the host field for the spec.
+* Generating tasks for GET endpoints only.
+* Replacing Path-Parameters holders with their default value.
+* Appending the required query string parameters and their default values.
+* Command Line Options allow overriding `min_wait`, `min_max` and `host`
 
-## Future Plans
-* follow $ref for parameters
-* POST / PUT endpoints
-* Add Command Line Options
+## Future Plans / Open Issues
+* Follow $ref for parameters
+* Support POST / PUT endpoints
 
 ## Usage
+
+_Basically:_
+
 `$ swagger2locust /path/to/swagger.json  > /tmp/locustfile.py`
+
+
+_Full Usage:_
+
+```
+  Usage: swagger2locust [options] <file>
+
+  Options:
+
+    -h, --help         output usage information
+    -V, --version      output the version number
+    -m, --min <n>      minimum time, in milliseconds, that a simulated user will wait between executing each task (default: 1000).
+    -x, --max <n>      maximum time, in milliseconds, that a simulated user will wait between executing each task (default: 3000).
+    -H, --host <host>  The host attribute is a URL prefix (i.e. “http://google.com”) to the host that is to be loaded.
+
+```
 
 ## Contribute 
   * fork
