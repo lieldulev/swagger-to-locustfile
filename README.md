@@ -16,8 +16,8 @@ _Hopefully it will be available to be installed with npm directly soon._
 
 ## Currently Supports
 * Swagger's host field
-* GET endpoints
-* Using Path-Parameters' default.
+* GET endpoints only.
+* Using Path-Parameters' default value.
 
 ## Future Plans
 * Query String parameters
