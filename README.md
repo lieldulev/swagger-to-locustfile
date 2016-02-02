@@ -22,7 +22,7 @@ _Hopefully it will be available to be installed with npm directly soon._
 * Command Line Options allow overriding `min_wait`, `min_max` and `host`
 
 ## Future Plans / Open Issues
-* Follow $ref for parameters
+* Follow $ref for parameters [#1](https://github.com/lieldulev/swagger-to-locustfile/issues/1)
 * Support POST / PUT endpoints
 
 ## Usage
