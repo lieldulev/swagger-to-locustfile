@@ -1,5 +1,5 @@
 # swagger-to-locustfile
-A CLI tool that creates locust.io config tasks file (locustfile.py) from swagger yaml/json specifications file.
+A CLI tool that creates [locust.io](http://locust.io) tasks file (locustfile.py) from [Swagger/OpenAPI Spec](https://github.com/OAI/OpenAPI-Specification).
 
 ## Requirements
 * Node JS (4.0 & up)
@@ -19,6 +19,7 @@ _Hopefully it will be available to be installed with npm directly soon._
 * Generating tasks for GET endpoints only.
 * Replacing Path-Parameters holders with their default value.
 * Appending the required query string parameters and their default values.
+* Swagger/OAI vendor extensions (`x-locust-import` and `x-locust-value`) to override default values with custom python expressions.
 * Command Line Options allow overriding `min_wait`, `min_max` and `host`
 
 ## Future Plans / Open Issues
@@ -46,6 +47,82 @@ _Full Usage:_
     -H, --host <host>  The host attribute is a URL prefix (i.e. “http://google.com”) to the host that is to be loaded.
 
 ```
+
+## Custom Swagger/OAI fields
+
+### x-locust-import
+
+You can add `x-locust-import` to your root node (same level as `host` field) to specify extra imports for your locust file. _This is useful if you need access to an import when you write an expression in `x-locust-value`._
+
+So for the following swagger spec:
+
+```
+{
+  "swagger" : "2.0",
+...
+  "host" : "subdomain.domain.tld",
+  "x-locust-import" : ["time"],
+...
+}
+
+```
+
+The `loucstfile.py` will have the following imports:
+
+```
+from locust import HttpLocust, TaskSet, task
+import time
+
+class MyTaskSet(TaskSet):
+...
+```
+
+### x-locust-value
+
+`x-locust-value` allows you to write a python expression that replaces the hardcoded
+default value of a field. 
+Example:
+
+The following spec file
+
+```
+...
+  "paths" : {
+    "/required/qs/params-with-x-locust-value" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "some_required_timestamp_param",
+          "in" : "query",
+          "description" : "Epoch timestamp, default is Now.",
+          "required" : true,
+          "type" : "number",
+          "default" : 1455134652,
+          "x-locust-value" : "str(int(time.time()))"
+        } ]
+      }
+```
+
+Will result in the following line in `locustfile.py` (__`x-locust-value`
+overrrides `default`__): 
+
+```
+...
+@task
+    def get_required_qs_params-with-x-locust-value(self):
+        self.client.get("/api/v1/required/qs/params-with-x-locust-value?some_required_timestamp_param={0}".format(str(int(time.time()))))
+...
+```
+
+While omitting `x-locust-value` field will result in the following line:
+
+```
+...
+@task
+    def get_required_qs_params-with-x-locust-value(self):
+        self.client.get("/api/v1/required/qs/params-with-x-locust-value?some_required_timestamp_param={0}".format("1455134652"))
+...
+```
+
 
 ## Contribute 
   * fork
