@@ -1,0 +1,63 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Some API Description",
+    "version" : "1.0",
+    "title" : "My Cool API"
+  },
+  "host" : "subdomain.domain.tld",
+  "basePath" : "/api/v1",
+  "schemes" : [ "https" ],
+  "produces" : [ "application/json" ],
+  "x-locust-import" : ["time"],
+  "paths" : {
+    "/simple/path" : {
+      "get" : {}
+    },
+    "/required/qs/params" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "some_required_param",
+          "in" : "query",
+          "description" : "comma-separated list of numbers",
+          "required" : true,
+          "type" : "string",
+          "default" : "8773,7997,8733,8765"
+        } ]
+      }
+    },
+    "/path/param/{id}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The ID of the object.",
+          "required" : true,
+          "type" : "number",
+          "default" : 123,
+          "format" : "long"
+        }, {
+          "name" : "Accept-Language",
+          "in" : "header",
+          "description" : "Preferred local of response",
+          "required" : false,
+          "type" : "string",
+          "default" : "en"
+        } ]
+      }
+    },
+    "/required/qs/params-with-x-locust-value" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "some_required_timestamp_param",
+          "in" : "query",
+          "description" : "Epoch timestamp, default is Now.",
+          "required" : true,
+          "type" : "number",
+          "default" : 1455134652,
+          "x-locust-value" : "str(int(time.time()))"
+        } ]
+      }
+    }
+  }
+}
