@@ -56,7 +56,9 @@ You can add `x-locust-import` to your root node (same level as `host` field) to 
 
 So for the following swagger spec:
 
-```
+<table>
+<tr><td>JSON</td><td>YAML</td></tr>
+<tr><td><pre>
 {
   "swagger" : "2.0",
 ...
@@ -64,9 +66,15 @@ So for the following swagger spec:
   "x-locust-import" : ["time"],
 ...
 }
-
-```
-
+</pre></td><td><pre>
+swagger: "2.0"
+...
+host: "subdomain.domain.tld"
+x-locust-import: 
+  - "time"
+...
+</pre></td></tr>
+</table>
 The `locustfile.py` will have the following imports:
 
 ```
@@ -85,22 +93,45 @@ Example:
 
 The following spec file
 
-```
+<table>
+<tr><td>JSON</td><td>YAML</td></tr>
+<tr><td><pre>
 ...
-  "paths" : {
-    "/required/qs/params-with-x-locust-value" : {
-      "get" : {
-        "parameters" : [ {
-          "name" : "some_required_timestamp_param",
-          "in" : "query",
-          "description" : "Epoch timestamp, default is Now.",
-          "required" : true,
-          "type" : "number",
-          "default" : 1455134652,
-          "x-locust-value" : "str(int(time.time()))"
-        } ]
-      }
-```
+"paths" : {
+  "/required/qs/params-with-x-locust-value" : {
+    "get" : {
+      "parameters" : [ {
+        "name" : "sreq_timestamp_param",
+        "in" : "query",
+        "description" : "Some timestamp.",
+        "required" : true,
+        "type" : "number",
+        "default" : 1455134652,
+        "x-locust-value" : "str(int(time.time()))"
+      } ]
+    }
+  }
+}
+...
+</pre></td><td style="valign:top"><pre>
+...
+paths: 
+  /required/qs/params-with-x-locust-value: 
+    get: 
+      parameters: - 
+        name: "req_timestamp_param"
+        in: "query"
+        description: "Some timestamp."
+        required: true
+        type: "number"
+        default: 1455134652
+        x-locust-value: "str(int(time.time()))"
+...
+
+
+
+
+</pre></td></tr></table>
 
 Will result in the following line in `locustfile.py` (__`x-locust-value`
 overrrides `default`__): 
