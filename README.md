@@ -33,12 +33,17 @@ Or you can install from a clone of the repo:
 
 ## Usage
 
-_Basically:_
+__Basically:__
 
 `$ swagger2locust /path/to/swagger.json  > /tmp/locustfile.py`
 
+_Or you can pipe the spec:_
 
-_Full Usage:_
+
+`$ cat /path/to/spec.yaml | swagger2locust`
+
+
+__Full Usage:__
 
 ```
   Usage: swagger2locust [options] <file>
