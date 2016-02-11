@@ -54,8 +54,16 @@ _Full Usage:_
 
 You can add `x-locust-import` to your root node (same level as `host` field) to specify extra imports for your locust file. _This is useful if you need access to an import when you write an expression in `x-locust-value`._
 
-So for the following swagger spec:
+So for the following swagger YAML spec:
+```
+swagger: 2.0
+...
+host: subdomain.domain.tld
+x-locust-import:
+  - time
+``` 
 
+Or the following swagger JSON spec:
 ```
 {
   "swagger" : "2.0",
@@ -64,7 +72,6 @@ So for the following swagger spec:
   "x-locust-import" : ["time"],
 ...
 }
-
 ```
 
 The `locustfile.py` will have the following imports:
@@ -83,8 +90,23 @@ class MyTaskSet(TaskSet):
 default value of a field. 
 Example:
 
-The following spec file
+The following YAML spec file
+```
+...
+paths:
+  /required/qs/params-with-x-locust-value:
+    get:
+      parameters:
+        - name: some_required_timestamp_param
+          in: query
+          description: Epoch timestamp, default is Now.
+          required: true
+          type: number
+          default: 1455134652
+          x-locust-value: "str(int(time.time()))"
+```
 
+Or the following JSON spec file
 ```
 ...
   "paths" : {
