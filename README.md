@@ -5,14 +5,19 @@ A CLI tool that creates [locust.io](http://locust.io) tasks file (locustfile.py)
 * Node JS (4.0 & up)
 
 ## Installation
-Currently best option is
+
+Best option is:
+
+```
+npm install swagger-to-locustfile
+```
+
+Or you can install from a clone of the repo:
 
   1. `$ git clone git@github.com:lieldulev/swagger-to-locustfile.git`
   2. `$ cd swagger-to-locustfile`
   3. `$ npm -g install`
   4. You are good to go.
-
-_Hopefully it will be available to be installed with npm directly soon._
 
 ## Currently Supports
 * Grabbing the host field for the spec.
