@@ -144,7 +144,7 @@ overrrides `default`__):
 ```
 ...
 @task
-    def get_required_qs_params-with-x-locust-value(self):
+    def get_required_qs_params_with_x_locust_value(self):
         self.client.get("/api/v1/required/qs/params-with-x-locust-value?some_required_timestamp_param={0}".format(str(int(time.time()))))
 ...
 ```
@@ -154,7 +154,7 @@ While omitting `x-locust-value` field will result in the following line:
 ```
 ...
 @task
-    def get_required_qs_params-with-x-locust-value(self):
+    def get_required_qs_params_without_x_locust_value(self):
         self.client.get("/api/v1/required/qs/params-with-x-locust-value?some_required_timestamp_param={0}".format("1455134652"))
 ...
 ```
