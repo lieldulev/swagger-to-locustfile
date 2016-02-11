@@ -67,7 +67,7 @@ So for the following swagger spec:
 
 ```
 
-The `loucstfile.py` will have the following imports:
+The `locustfile.py` will have the following imports:
 
 ```
 from locust import HttpLocust, TaskSet, task
