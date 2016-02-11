@@ -21,6 +21,7 @@
   "homepage": "https://github.com/lieldulev/swagger-to-locustfile#readme",
   "dependencies": {
     "chalk": "^1.1.1",
+    "cli-pipe": "0.0.1",
     "commander": "^2.9.0",
     "js-yaml": "^3.5.2"
   }
