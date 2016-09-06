@@ -87,7 +87,7 @@ x-locust-import:
 </table>
 The `locustfile.py` will have the following imports:
 
-```
+```.py
 from locust import HttpLocust, TaskSet, task
 import time
 
@@ -146,7 +146,7 @@ paths:
 Will result in the following line in `locustfile.py` (__`x-locust-value`
 overrrides `default`__): 
 
-```
+```.py
 ...
 @task
     def get_required_qs_params_with_x_locust_value(self):
@@ -156,7 +156,7 @@ overrrides `default`__):
 
 While omitting `x-locust-value` field will result in the following line:
 
-```
+```.py
 ...
 @task
     def get_required_qs_params_without_x_locust_value(self):
