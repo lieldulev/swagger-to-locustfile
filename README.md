@@ -15,14 +15,14 @@ Best option is:
 
 ## Currently Supports
 * Grabbing the host field for the spec.
-* Generating tasks for GET endpoints only.
+* Generating tasks for GET/POST/PUT/UPDATE/DELETE endpoints.
 * Replacing Path-Parameters holders with their default value.
 * Appending the required query string parameters and their default values.
 * Swagger/OAI vendor extensions (`x-locust-import` and `x-locust-value`) to override default values with custom python expressions.
 * Command Line Options allow overriding `min_wait`, `min_max` and `host`
 
 ## Future Plans / Open Issues
-* Support POST / PUT endpoints
+* Extracting body/params for POST/PUT/DELETE/UPDATE endpoints.
 * Support *required* headers
 
 ## Usage
@@ -164,6 +164,10 @@ While omitting `x-locust-value` field will result in the following line:
   * create a branch on your fork.
   * pull-request to master branch here.
   * win.
+
+### Thanks
+
+- [@DataGreed](https://github.com/DataGreed) (PR #13)
   
 ## License
 
