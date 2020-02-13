@@ -14,14 +14,17 @@ program
   .option('-m, --min <n>', 'minimum time, in milliseconds, that a simulated user will wait between executing each task (default: 1000).', parseInt)
   .option('-x, --max <n>', 'maximum time, in milliseconds, that a simulated user will wait between executing each task (default: 3000).', parseInt)
   .option('-H, --host <host>', 'The host attribute is a URL prefix (i.e. “http://google.com”) to the host that is to be loaded.')
+  .option('-c, --client', 'Set this flag to generate an API client instead of a TaskSet that you can use to program flexible locust behaviours', false)
   .action(function(file, options) {
 
     cmdValue = 'convert';
     
     var actualOptions = s2l.defaultOptions;
+    var generateClient = false;
     if (options.host) { actualOptions['host'] = options.host}
     if (options.min) { actualOptions['min_wait'] = options.min}
     if (options.max) { actualOptions['max_wait'] = options.max}
+    if(options.client) {generateClient=true}
 
     if (file.indexOf('{') == 0) { // piped in JSON string
       console.log(s2l.convertJSON(file, actualOptions));
@@ -31,7 +34,7 @@ program
       console.error(chalk.red("Error: File not found or not a valid swagger yaml/json file: "+file));
       console.log(chalk.yellow("Hint: Check that file exsits and extension is either .json or .yaml"));
     } else { // good file
-      console.log(s2l.convertFile(file, actualOptions));
+      console.log(s2l.convertFile(file, actualOptions, generateClient));
     }
   });
 
