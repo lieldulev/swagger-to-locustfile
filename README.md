@@ -49,7 +49,7 @@ __Full Usage:__
     -m, --min <n>      minimum time, in milliseconds, that a simulated user will wait between executing each task (default: 1000).
     -x, --max <n>      maximum time, in milliseconds, that a simulated user will wait between executing each task (default: 3000).
     -H, --host <host>  The host attribute is a URL prefix (i.e. “http://google.com”) to the host that is to be loaded.
-
+    -c, --client       Use this flag to generate a client for your HTTP API or Website and leae the TaskSet empty
 ```
 
 ## Custom Swagger/OAI fields
