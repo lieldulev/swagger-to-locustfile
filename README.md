@@ -82,7 +82,7 @@ x-locust-import:
 The `locustfile.py` will have the following imports:
 
 ```.py
-from locust import HttpLocust, TaskSet, task
+from locust import HttpUser, TaskSet, task
 import time
 
 class MyTaskSet(TaskSet):
